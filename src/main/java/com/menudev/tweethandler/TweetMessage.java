@@ -19,4 +19,11 @@ public class TweetMessage {
 		return message;
 	}
 
+	@Override
+	public String toString() {
+		return "TweetMessage{" +
+						"id=" + id +
+						", message='" + message + '\'' +
+						'}';
+	}
 }

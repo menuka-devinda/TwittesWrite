@@ -1,4 +1,6 @@
-package com.menudev.tweethandler;
+package com.menudev.tweethandler.withoutRx;
+
+import com.menudev.tweethandler.TweetMessage;
 
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
@@ -9,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  *
  */
-public class TweetProducer implements Runnable {
+ class TweetProducer implements Runnable {
 
     private final BlockingQueue<TweetMessage> queue;
     private final String[] topics;

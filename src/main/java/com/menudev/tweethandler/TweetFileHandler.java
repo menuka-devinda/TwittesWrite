@@ -4,24 +4,14 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import com.menudev.tweethandler.svc.FileHandlerSvc;
-
-public class TweetFileHandler implements FileHandlerSvc, Runnable {
-
-	private final String topic;
-	private final TweetMessage message;
-
-	public TweetFileHandler(String topic, TweetMessage msg) {
-		this.topic = topic;
-		this.message = msg;
-	}
+ public class TweetFileHandler implements FileHandlerSvc {
 
 	/**
 	 * Depending on the tweet topic it writes to its topic file
 	 */
-	public void writeTweet() {
+	public void writeTweet(String topic, TweetMessage message) {
 
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(getFileName(), true))) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(topic + ".txt", true))) {
 			writer.newLine();
 			writer.write("[id :] " + message.getId() + " [message : ]" + message.getMessage());
 			writer.newLine();
@@ -31,7 +21,26 @@ public class TweetFileHandler implements FileHandlerSvc, Runnable {
 			e.printStackTrace();
 		} 
 	}
+	 /**
+	  * this method is responsible to write tweets to different files depending on the topic
+	  * In this version topic set as the twitter message body.
+	  * In the next version we can improve the logic of recognizing the correct topic from message
+	  * body.
+	  *
+	  * @param tweet
+	  */
+/*	 public void writeTweetsToFiles(final TweetMessage tweet) {
 
+		 String topic = tweet.getMessage();
+		 Runnable runnable = new TweetFileHandler(topic, tweet);
+		 excutor.submit(runnable);
+		 // shuts down the executor immediately.
+	 }
+
+	 public void shutdownExecutorService() {
+		 System.out.println("Shutting down tweet writing ");
+		 excutor.shutdownNow();
+	 }
 	public String getFileName() {
 		return topic + ".txt";
 	}
@@ -40,5 +49,5 @@ public class TweetFileHandler implements FileHandlerSvc, Runnable {
 	public void run() {
 
 		writeTweet();
-	}
+	}*/
 }

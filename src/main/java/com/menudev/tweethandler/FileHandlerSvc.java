@@ -1,7 +1,7 @@
-package com.menudev.tweethandler.svc;
+package com.menudev.tweethandler;
 
 import com.menudev.tweethandler.TweetMessage;
 
 public interface FileHandlerSvc {
-	void writeTweet();
+	void writeTweet(String topic, TweetMessage msg);
 }
