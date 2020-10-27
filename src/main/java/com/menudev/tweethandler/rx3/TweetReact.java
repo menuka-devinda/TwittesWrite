@@ -40,18 +40,6 @@ public class TweetReact {
     Thread.sleep(i);
   }
 
-  public static @NonNull Flowable<Object> rangeReverse(int upperBound, int lowerBound) {
-
-    return Flowable.generate(() -> new AtomicInteger(upperBound + 1),
-            (state, emitter) -> {
-              int current = state.decrementAndGet();
-              emitter.onNext(current);
-              if (current == lowerBound) {
-                emitter.onComplete();
-              }
-            });
-  }
-
   /**
    * In the next version of this implementation we use this method to stream
    * tweets from tweeter API
